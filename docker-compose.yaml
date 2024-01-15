@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  server:
+    build: 
+      context: ./server
+    volumes:
+      - ./server:/app
+    command: python -u app.py
+  client:
+    build:
+      context: ./client
+    command: python3 -u app.py
+    depends_on:
+        - server
+    volumes:
+      - ./client:/app
